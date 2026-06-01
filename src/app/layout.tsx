@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   keywords: ["Tally", "mobile accounting", "GST", "TallyBridge", "offline Tally"],
   icons: {
     icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
-    apple: [{ url: "/favicon.svg" }],
+    apple: [{ url: "/favicon.svg", type: "image/svg+xml" }],
   },
   openGraph: {
     title: "Tally On Phone | TallyBridge",

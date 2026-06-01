@@ -56,6 +56,13 @@ export const images = {
 
   // —— FAQ ——
   faqVisual: local("faq-visual.png"),
+
+  // —— Standalone pages (unique mapping) ——
+  pageAboutHero: local("hero-showcase.png"),
+  pageAboutMission: local("sync.png"),
+  pageAboutVision: local("features-intro.png"),
+  pageAboutCommitment: local("benefits-banner.png"),
+  pageContactHero: local("cta-mid.png"),
 } as const;
 
 export type ImageKey = keyof typeof images;

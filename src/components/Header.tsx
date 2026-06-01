@@ -1,39 +1,49 @@
 "use client";
 
 import { motion, useMotionValueEvent, useScroll } from "framer-motion";
-import { useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useMemo, useState } from "react";
 import { useTheme } from "@/context/ThemeContext";
+import { homeAnchor, mainNav, routes } from "@/lib/site";
 import ThemeSwitcher from "./ThemeSwitcher";
 import BrandLogo from "./ui/BrandLogo";
 import MagneticCTA from "./ui/MagneticCTA";
 import Container from "./ui/Container";
 
-const navLinks = [
-  { href: "#features", label: "Features" },
-  { href: "#benefits", label: "Benefits" },
-  { href: "#how-it-works", label: "How It Works" },
-  { href: "#pricing", label: "Pricing" },
-  { href: "#testimonials", label: "Reviews" },
-  { href: "#faq", label: "FAQ" },
-];
-
 export default function Header() {
   const { theme } = useTheme();
+  const pathname = usePathname();
+  const isHome = pathname === routes.home;
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { scrollY } = useScroll();
   const logoVariant = theme.isLight ? "dark" : "light";
 
+  const navLinks = useMemo(
+    () =>
+      mainNav.map((link) => ({
+        ...link,
+        href: isHome ? link.href : homeAnchor(link.href),
+      })),
+    [isHome]
+  );
+
+  const ctaHref = isHome ? "#cta-final" : homeAnchor("#cta-final");
+
   useMotionValueEvent(scrollY, "change", (y) => setScrolled(y > 16));
+
+  const headerTone = isHome && !theme.isLight ? "on-hero" : "on-page";
 
   return (
     <motion.header
       initial={{ y: -12, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+      data-tone={headerTone}
       className={`site-header fixed top-0 z-50 w-full border-b transition-all duration-300 ${
         scrolled
-          ? "border-[var(--border-subtle)] bg-transparent shadow-none"
+          ? "border-[var(--border-subtle)] bg-transparent"
           : "border-transparent bg-transparent"
       }`}
     >
@@ -42,6 +52,7 @@ export default function Header() {
           showTagline
           size="sm"
           variant={logoVariant}
+          href={routes.home}
           className="max-w-[min(100%,220px)] sm:max-w-none"
         />
 
@@ -59,13 +70,19 @@ export default function Header() {
               />
             </a>
           ))}
+          <Link
+            href={routes.contact}
+            className="nav-link rounded-lg px-3 py-2 text-sm font-medium transition"
+          >
+            Contact
+          </Link>
         </nav>
 
         <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
           <ThemeSwitcher />
           <div className="hidden md:block">
             <MagneticCTA
-              href="#cta-final"
+              href={ctaHref}
               variant="secondary"
               className="!min-h-[40px] !min-w-0 !px-4 !py-2 !text-sm"
             >
@@ -91,10 +108,7 @@ export default function Header() {
       </Container>
 
       {open && (
-        <nav
-          className="mobile-nav border-t px-4 py-4 xl:hidden"
-          aria-label="Mobile"
-        >
+        <nav className="mobile-nav border-t px-4 py-4 xl:hidden" aria-label="Mobile">
           {navLinks.map((link) => (
             <a
               key={link.href}
@@ -105,8 +119,15 @@ export default function Header() {
               {link.label}
             </a>
           ))}
+          <Link
+            href={routes.contact}
+            className="mobile-nav-link block rounded-lg px-2 py-3 text-sm font-medium"
+            onClick={() => setOpen(false)}
+          >
+            Contact
+          </Link>
           <a
-            href="#cta-final"
+            href={ctaHref}
             className="mt-3 block rounded-xl py-3.5 text-center text-sm font-semibold text-white"
             style={{ background: `linear-gradient(135deg, var(--accent), var(--accent-dark))` }}
             onClick={() => setOpen(false)}

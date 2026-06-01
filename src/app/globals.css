@@ -109,6 +109,202 @@ html.theme-light .site-header .nav-menu-btn span {
   background: var(--foreground);
 }
 
+.site-header[data-tone="on-page"] .nav-link {
+  color: var(--foreground);
+  text-shadow: none;
+}
+
+.site-header[data-tone="on-page"] .nav-menu-btn {
+  border-color: var(--border-subtle);
+  background: var(--surface);
+  color: var(--foreground);
+}
+
+.site-header[data-tone="on-page"] .nav-menu-btn span {
+  background: var(--foreground);
+}
+
+/* Hero layout — mobile: visual above CTAs; desktop: visual in wide right column */
+.hero-layout {
+  display: grid;
+  width: 100%;
+  align-items: start;
+  column-gap: clamp(1.5rem, 4vw, 3rem);
+  row-gap: clamp(0.75rem, 2.5vw, 1.25rem);
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas:
+    "hero-eyebrow"
+    "hero-brand"
+    "hero-title"
+    "hero-desc"
+    "hero-visual"
+    "hero-cta"
+    "hero-badges"
+    "hero-stats";
+}
+
+@media (min-width: 1024px) {
+  .hero-layout {
+    align-items: center;
+    grid-template-columns: minmax(0, 1fr) minmax(420px, 1.12fr);
+    grid-template-areas:
+      "hero-eyebrow hero-visual"
+      "hero-brand   hero-visual"
+      "hero-title   hero-visual"
+      "hero-desc    hero-visual"
+      "hero-cta     hero-visual"
+      "hero-badges  hero-visual"
+      "hero-stats   hero-visual";
+  }
+}
+
+.hero-visual-area {
+  width: 100%;
+  min-width: 0;
+  justify-self: center;
+}
+
+/* Mobile/tablet: breathing room above Get Started */
+@media (max-width: 1023px) {
+  .hero-visual-area {
+    margin-top: 0.25rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .hero-layout [grid-area="hero-cta"] {
+    margin-top: 0.25rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-visual-area {
+    justify-self: center;
+    align-self: center;
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+/* Hero SVG — distinct size per breakpoint (not one-size-fits-all) */
+.hero-svg-container {
+  width: 100%;
+  max-width: 100%;
+  overflow: visible;
+}
+
+.hero-svg-aspect {
+  aspect-ratio: 9 / 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-inline: auto;
+  width: 100%;
+}
+
+/* Mobile (~320–639px): compact */
+.hero-visual-area .hero-svg-aspect {
+  max-width: min(88vw, 260px);
+  max-height: min(30vh, 240px);
+  min-height: 180px;
+}
+
+/* Large mobile / small tablet (640–767px) */
+@media (min-width: 640px) {
+  .hero-visual-area .hero-svg-aspect {
+    max-width: min(75vw, 300px);
+    max-height: min(34vh, 280px);
+    min-height: 200px;
+  }
+}
+
+/* Tablet (768–1023px): medium */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .hero-visual-area .hero-svg-aspect {
+    max-width: min(62vw, 380px);
+    max-height: min(40vh, 360px);
+    min-height: 260px;
+  }
+}
+
+/* Desktop column (1024+): large SVG when shown below xl canvas threshold */
+@media (min-width: 1024px) {
+  .hero-visual-area .hero-svg-aspect {
+    max-width: min(100%, 560px);
+    max-height: min(72vh, 640px);
+    min-height: 420px;
+  }
+}
+
+/* Extra-large desktop: 3D canvas wrapper */
+.hero-canvas-wrap {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  height: min(42vh, 400px);
+}
+
+@media (min-width: 640px) {
+  .hero-canvas-wrap {
+    height: min(48vh, 460px);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .hero-canvas-wrap {
+    height: min(52vh, 500px);
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-canvas-wrap {
+    height: min(75vh, 720px);
+    min-height: 520px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .hero-canvas-wrap {
+    height: min(78vh, 760px);
+    min-height: 560px;
+  }
+}
+
+.hero-visual-root {
+  contain: layout style;
+  width: 100%;
+}
+
+.hero-svg-element {
+  width: 100%;
+  height: 100%;
+  max-height: inherit;
+}
+
+/* Legal & prose pages */
+.legal-body p,
+.legal-body li {
+  line-height: 1.75;
+  margin-top: 0.75rem;
+}
+
+.legal-body ul {
+  list-style: disc;
+  padding-left: 1.25rem;
+  margin-top: 0.75rem;
+}
+
+.legal-body a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.legal-body ol {
+  list-style: decimal;
+  padding-left: 1.25rem;
+  margin-top: 0.75rem;
+}
+
 .mobile-nav {
   background: color-mix(in srgb, var(--bg-deep) 92%, transparent);
   border-color: var(--border-subtle);

@@ -15,7 +15,7 @@ function SceneLoader() {
 
 export default function HeroCanvas() {
   return (
-    <div className="relative h-[min(420px,50vh)] w-full sm:h-[min(520px,58vh)] lg:h-[600px]">
+    <div className="hero-canvas-wrap relative w-full min-w-0">
       <div
         className="pointer-events-none absolute inset-0 rounded-3xl opacity-60 blur-3xl"
         style={{ background: "var(--glow)" }}

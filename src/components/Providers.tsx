@@ -1,6 +1,7 @@
 "use client";
 
 import AuroraBackground from "@/components/AuroraBackground";
+import DynamicFavicon from "@/components/DynamicFavicon";
 import { ThemeProvider } from "@/context/ThemeContext";
 import GsapScrollInit from "@/components/GsapScrollInit";
 import LenisProvider from "@/components/LenisProvider";
@@ -14,6 +15,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
 
   return (
     <ThemeProvider>
+      <DynamicFavicon />
       <LenisProvider>
         <AuroraBackground />
         <GsapScrollInit />

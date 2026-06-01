@@ -1,6 +1,9 @@
 import Link from "next/link";
+import { contact, routes, site } from "@/lib/site";
 import BrandLogo from "./ui/BrandLogo";
+import ContactInfo from "./ui/ContactInfo";
 import Container from "./ui/Container";
+import SocialLinks from "./ui/SocialLinks";
 
 export default function Footer() {
   return (
@@ -31,90 +34,120 @@ export default function Footer() {
       </div>
 
       <Container className="py-12 sm:py-14">
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
-          <div className="min-w-0 sm:col-span-2 lg:col-span-1">
-            <BrandLogo showTagline size="md" variant="auto" href="#" />
-            <p className="mt-4 max-w-xs text-sm leading-relaxed text-[var(--gray-muted)]">
+        <div className="grid gap-10 lg:grid-cols-12">
+          <div className="min-w-0 lg:col-span-4">
+            <BrandLogo showTagline size="md" variant="auto" href={routes.home} />
+            <p className="mt-4 max-w-sm text-sm leading-relaxed">
               Tally on your phone. Offline access, GST billing, smart reports, and secure
               sync for modern businesses.
             </p>
+            <SocialLinks className="mt-6" />
           </div>
 
-          <div>
-            <h4 className="text-sm font-semibold uppercase tracking-wider text-[var(--foreground)]">
-              Product
-            </h4>
-            <ul className="mt-4 space-y-2.5 text-sm">
-              <li>
-                <Link href="#features" className="transition hover:text-[var(--foreground)]">
-                  Features
-                </Link>
-              </li>
-              <li>
-                <Link href="#pricing" className="transition hover:text-[var(--foreground)]">
-                  Pricing
-                </Link>
-              </li>
-              <li>
-                <Link href="#how-it-works" className="transition hover:text-[var(--foreground)]">
-                  How It Works
-                </Link>
-              </li>
-            </ul>
+          <div className="grid gap-8 sm:grid-cols-2 lg:col-span-4">
+            <div>
+              <h4 className="text-sm font-semibold uppercase tracking-wider text-[var(--foreground)]">
+                Product
+              </h4>
+              <ul className="mt-4 space-y-2.5 text-sm">
+                <li>
+                  <Link href={routes.home + "#features"} className="transition hover:text-[var(--foreground)]">
+                    Features
+                  </Link>
+                </li>
+                <li>
+                  <Link href={routes.home + "#pricing"} className="transition hover:text-[var(--foreground)]">
+                    Pricing
+                  </Link>
+                </li>
+                <li>
+                  <Link href={routes.home + "#how-it-works"} className="transition hover:text-[var(--foreground)]">
+                    How It Works
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="text-sm font-semibold uppercase tracking-wider text-[var(--foreground)]">
+                Company
+              </h4>
+              <ul className="mt-4 space-y-2.5 text-sm">
+                <li>
+                  <Link href={routes.about} className="transition hover:text-[var(--foreground)]">
+                    About Us
+                  </Link>
+                </li>
+                <li>
+                  <Link href={routes.contact} className="transition hover:text-[var(--foreground)]">
+                    Contact
+                  </Link>
+                </li>
+                <li>
+                  <Link href={routes.privacy} className="transition hover:text-[var(--foreground)]">
+                    Privacy Policy
+                  </Link>
+                </li>
+                <li>
+                  <Link href={routes.terms} className="transition hover:text-[var(--foreground)]">
+                    Terms & Conditions
+                  </Link>
+                </li>
+                <li>
+                  <Link href={routes.refund} className="transition hover:text-[var(--foreground)]">
+                    Refund Policy
+                  </Link>
+                </li>
+                <li>
+                  <Link href={routes.cookies} className="transition hover:text-[var(--foreground)]">
+                    Cookie Policy
+                  </Link>
+                </li>
+              </ul>
+            </div>
           </div>
 
-          <div>
-            <h4 className="text-sm font-semibold uppercase tracking-wider text-[var(--foreground)]">
-              Company
-            </h4>
-            <ul className="mt-4 space-y-2.5 text-sm">
-              <li>
-                <Link href="#" className="transition hover:text-[var(--foreground)]">
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link href="#faq" className="transition hover:text-[var(--foreground)]">
-                  Contact
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="transition hover:text-[var(--foreground)]">
-                  Privacy Policy
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="transition hover:text-[var(--foreground)]">
-                  Terms & Conditions
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          <div>
+          <div className="lg:col-span-4">
             <h4 className="text-sm font-semibold uppercase tracking-wider text-[var(--foreground)]">
               Contact
             </h4>
-            <ul className="mt-4 space-y-2.5 text-sm">
+            <ul className="mt-4 space-y-3 text-sm">
               <li>
                 <a
-                  href="mailto:support@tallybridge.com"
-                  className="break-all transition hover:text-[var(--foreground)]"
+                  href={`mailto:${contact.email}`}
+                  className="break-all transition hover:text-[var(--accent)]"
                 >
-                  support@tallybridge.com
+                  {contact.email}
                 </a>
               </li>
-              <li>+91 1800-XXX-XXXX</li>
-              <li>Mumbai, India</li>
+              <li>
+                <a href={`tel:${contact.phone}`} className="transition hover:text-[var(--accent)]">
+                  {contact.phoneDisplay}
+                </a>
+              </li>
+              <li>
+                <a
+                  href={contact.mapsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="leading-relaxed transition hover:text-[var(--accent)]"
+                >
+                  {contact.address.line1}
+                  <br />
+                  {contact.address.line2}
+                  <br />
+                  {contact.address.city}
+                </a>
+              </li>
             </ul>
           </div>
         </div>
 
         <div className="mt-10 border-t border-[var(--border-subtle)] pt-8 text-center sm:mt-12">
-          <p className="text-sm leading-relaxed text-[var(--gray-muted)]">
-            Copyright © 2026 All rights reserved. TallyBridge powered by{" "}
+          <p className="text-sm leading-relaxed">
+            Copyright © {site.copyrightYear} All rights reserved. {site.name} powered by{" "}
             <a
-              href="https://developerbox.co.in"
+              href={site.developerUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="font-medium text-[var(--accent)] underline-offset-2 transition hover:underline"
