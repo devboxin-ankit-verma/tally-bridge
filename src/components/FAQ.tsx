@@ -30,8 +30,16 @@ const faqs = [
   },
 ];
 
-function FaqItem({ q, a }: { q: string; a: string }) {
-  const [open, setOpen] = useState(false);
+function FaqItem({
+  q,
+  a,
+  defaultOpen = false,
+}: {
+  q: string;
+  a: string;
+  defaultOpen?: boolean;
+}) {
+  const [open, setOpen] = useState(defaultOpen);
 
   return (
     <div className="border-b border-[var(--border-subtle)] last:border-0">
@@ -89,12 +97,17 @@ export default function FAQ() {
         <div className="grid gap-10 lg:grid-cols-2 lg:gap-14">
           <div>
             <div className="gsap-reveal card-premium px-5 sm:px-8">
-              {faqs.map((faq) => (
-                <FaqItem key={faq.q} q={faq.q} a={faq.a} />
+              {faqs.map((faq, index) => (
+                <FaqItem
+                  key={faq.q}
+                  q={faq.q}
+                  a={faq.a}
+                  defaultOpen={index === 0}
+                />
               ))}
             </div>
 
-            <div className="gsap-reveal card-premium mt-8 p-7 sm:p-9">
+            <div id="contact-form" className="gsap-reveal card-premium mt-8 scroll-mt-28 p-7 sm:p-9">
               <h3 className="text-xl font-bold tracking-tight text-foreground">Get in touch</h3>
               <p className="mt-2 text-gray-muted">
                 Can&apos;t find what you need? Send us a message.

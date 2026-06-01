@@ -57,7 +57,7 @@ export default function MagneticCTA({
         href={href}
         onMouseMove={handleMove}
         onMouseLeave={handleLeave}
-        className={`group relative inline-flex min-h-[48px] min-w-[140px] items-center justify-center gap-2 overflow-hidden rounded-xl px-8 py-3.5 text-[0.9375rem] font-semibold tracking-tight transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)] ${variants[variant]} ${className}`}
+        className={`btn-cta group overflow-hidden focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)] ${variants[variant]} ${className}`}
         style={
           variant === "secondary"
             ? { background: `linear-gradient(135deg, var(--accent), var(--accent-dark))` }

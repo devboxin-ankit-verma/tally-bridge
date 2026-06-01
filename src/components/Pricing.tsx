@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { images } from "@/lib/images";
+import { routes } from "@/lib/site";
 import Container from "./ui/Container";
 import SectionHeading from "./ui/SectionHeading";
 import SectionVisualBanner from "./ui/SectionVisualBanner";
@@ -132,7 +133,11 @@ export default function Pricing() {
 
                 <motion.div whileHover={{ y: -2 }} className="mt-8">
                   <Link
-                    href="#cta-final"
+                    href={
+                      plan.cta === "Contact Sales"
+                        ? `${routes.contact}#contact-form`
+                        : "#cta-final"
+                    }
                     className={`flex min-h-[48px] items-center justify-center rounded-xl text-center text-[0.9375rem] font-semibold transition-all ${
                       plan.recommended
                         ? "text-white shadow-md"

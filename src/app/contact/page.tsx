@@ -30,7 +30,10 @@ export default function ContactPage() {
         </Container>
       </section>
 
-      <section className="section-padding bg-surface-muted">
+      <section
+        id="contact-form"
+        className="section-padding scroll-mt-28 bg-surface-muted"
+      >
         <Container>
           <div className="grid gap-10 lg:grid-cols-2 lg:gap-14">
             <div>

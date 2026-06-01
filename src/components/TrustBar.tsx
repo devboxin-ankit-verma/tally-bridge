@@ -1,13 +1,30 @@
 "use client";
 
 import { images } from "@/lib/images";
+import AnimatedCounter from "./ui/AnimatedCounter";
 import Container from "./ui/Container";
 import SafeImage from "./ui/SafeImage";
 
 const metrics = [
-  { value: "5,000+", label: "Active businesses" },
-  { value: "99.9%", label: "Uptime SLA" },
-  { value: "ISO", label: "27001 certified" },
+  {
+    type: "counter" as const,
+    end: 5000,
+    suffix: "+",
+    label: "Active businesses",
+    decimals: 0,
+  },
+  {
+    type: "counter" as const,
+    end: 99.9,
+    suffix: "%",
+    label: "Uptime SLA",
+    decimals: 1,
+  },
+  {
+    type: "static" as const,
+    display: "ISO",
+    label: "27001 certified",
+  },
 ];
 
 export default function TrustBar() {
@@ -42,7 +59,16 @@ export default function TrustBar() {
               className="flex flex-col items-center px-6 text-center sm:px-10"
             >
               <span className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
-                {m.value}
+                {m.type === "counter" ? (
+                  <AnimatedCounter
+                    end={m.end}
+                    suffix={m.suffix}
+                    decimals={m.decimals}
+                    duration={2.2}
+                  />
+                ) : (
+                  m.display
+                )}
               </span>
               <span className="mt-0.5 text-sm font-medium text-white/90">{m.label}</span>
             </div>

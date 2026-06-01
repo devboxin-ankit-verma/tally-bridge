@@ -7,10 +7,14 @@ import HeroMobileSvg from "./HeroMobileSvg";
 
 const HeroCanvas = dynamic(() => import("./HeroCanvas"), {
   ssr: false,
-  loading: () => <HeroMobileSvg />,
+  loading: () => (
+    <div className="hero-canvas-wrap hero-canvas-wrap--loading" aria-hidden>
+      <div className="hero-canvas-loading-pulse" />
+    </div>
+  ),
 });
 
-function useCanUseWebGL() {
+function useWebGLAvailable() {
   const [ok, setOk] = useState(true);
   useEffect(() => {
     try {
@@ -29,24 +33,35 @@ function useCanUseWebGL() {
   return ok;
 }
 
+/** Rotating 3D phone on all devices; static SVG only if WebGL unavailable or reduced motion */
 export default function HeroVisual() {
   const reducedMotion = useReducedMotion();
-  const webgl = useCanUseWebGL();
-  const [isDesktop3D, setIsDesktop3D] = useState(false);
+  const webgl = useWebGLAvailable();
+  const [mounted, setMounted] = useState(false);
 
-  useEffect(() => {
-    const mq = window.matchMedia("(min-width: 1024px)");
-    const update = () => setIsDesktop3D(mq.matches);
-    update();
-    mq.addEventListener("change", update);
-    return () => mq.removeEventListener("change", update);
-  }, []);
+  useEffect(() => setMounted(true), []);
 
-  const showCanvas = isDesktop3D && !reducedMotion && webgl;
+  if (!mounted) {
+    return (
+      <div className="hero-visual-root">
+        <div className="hero-canvas-wrap hero-canvas-wrap--loading" aria-hidden>
+          <div className="hero-canvas-loading-pulse" />
+        </div>
+      </div>
+    );
+  }
+
+  if (reducedMotion || !webgl) {
+    return (
+      <div className="hero-visual-root">
+        <HeroMobileSvg />
+      </div>
+    );
+  }
 
   return (
-    <div className="hero-visual-root relative w-full min-w-0 max-w-full">
-      {showCanvas ? <HeroCanvas /> : <HeroMobileSvg />}
+    <div className="hero-visual-root">
+      <HeroCanvas />
     </div>
   );
 }

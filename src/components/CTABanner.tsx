@@ -1,6 +1,7 @@
 "use client";
 
 import { images } from "@/lib/images";
+import { routes } from "@/lib/site";
 import Container from "./ui/Container";
 import MagneticCTA from "./ui/MagneticCTA";
 import SafeImage from "./ui/SafeImage";
@@ -11,6 +12,8 @@ type Props = {
   subtitle?: string;
   primaryLabel?: string;
   secondaryLabel?: string;
+  primaryHref?: string;
+  secondaryHref?: string;
   visual?: keyof typeof images;
 };
 
@@ -20,6 +23,8 @@ export default function CTABanner({
   subtitle = "Join thousands of businesses syncing, billing, and reporting from their phones.",
   primaryLabel = "Try Now — Free",
   secondaryLabel = "View Pricing",
+  primaryHref = "#cta-final",
+  secondaryHref = "#pricing",
   visual = "ctaMid",
 }: Props) {
   const bgImage = images[visual];
@@ -27,6 +32,11 @@ export default function CTABanner({
     visual === "ctaFinal"
       ? "Premium SaaS subscription ecosystem with modern fintech workspace"
       : "Business team celebrating growth with mobile Tally access on the go";
+
+  const resolvedSecondary =
+    secondaryLabel === "Talk to Sales" || secondaryLabel === "Contact Sales"
+      ? `${routes.contact}#contact-form`
+      : secondaryHref;
 
   return (
     <section
@@ -57,14 +67,14 @@ export default function CTABanner({
               {subtitle}
             </p>
             <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row lg:justify-start">
-              <MagneticCTA href="#cta-final">{primaryLabel}</MagneticCTA>
-              <MagneticCTA href="#pricing" variant="outline">
+              <MagneticCTA href={primaryHref}>{primaryLabel}</MagneticCTA>
+              <MagneticCTA href={resolvedSecondary} variant="outline">
                 {secondaryLabel}
               </MagneticCTA>
             </div>
           </div>
 
-          <div className="premium-visual-frame relative hidden aspect-[16/10] min-h-[240px] overflow-hidden lg:block">
+          <div className="relative hidden aspect-[16/10] min-h-[240px] overflow-hidden rounded-3xl border border-white/20 shadow-2xl lg:block">
             <SafeImage
               src={bgImage}
               alt={visualAlt}

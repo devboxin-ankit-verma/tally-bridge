@@ -30,6 +30,7 @@ export default function Home() {
         subtitle="No credit card required. Set up in minutes with the desktop connector."
         primaryLabel="Get Started Free"
         secondaryLabel="Talk to Sales"
+        secondaryHref="/contact#contact-form"
         visual="ctaFinal"
       />
       <FAQ />
