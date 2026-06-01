@@ -33,8 +33,16 @@ function applyTheme(theme: Theme) {
     "--bg-deep": theme.bgDeep,
     "--text-hero": theme.textHero,
     "--text-hero-muted": theme.textHeroMuted,
+    "--background": theme.background,
+    "--foreground": theme.foreground,
+    "--gray-muted": theme.grayMuted,
+    "--surface": theme.surface,
+    "--surface-muted": theme.surfaceMuted,
+    "--surface-elevated": theme.surfaceElevated,
+    "--border-subtle": theme.borderSubtle,
   };
   Object.entries(entries).forEach(([k, v]) => root.style.setProperty(k, v));
+  root.classList.toggle("theme-light", Boolean(theme.isLight));
 }
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {

@@ -19,9 +19,9 @@ export default function GsapScrollInit() {
         const y = x ? 0 : 32;
         gsap.fromTo(
           el,
-          { autoAlpha: 0, x, y },
+          { opacity: 0.4, x, y },
           {
-            autoAlpha: 1,
+            opacity: 1,
             x: 0,
             y: 0,
             duration: 0.85,
@@ -40,9 +40,9 @@ export default function GsapScrollInit() {
         if (!children.length) return;
         gsap.fromTo(
           children,
-          { autoAlpha: 0, y: 24 },
+          { opacity: 0.45, y: 24 },
           {
-            autoAlpha: 1,
+            opacity: 1,
             y: 0,
             duration: 0.7,
             stagger: 0.08,

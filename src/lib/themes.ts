@@ -6,7 +6,8 @@ export type ThemeId =
   | "goldenPrestige"
   | "midnightSapphire"
   | "auroraGreen"
-  | "darkPremium";
+  | "darkPremium"
+  | "cleanWhite";
 
 export type Theme = {
   id: ThemeId;
@@ -22,6 +23,14 @@ export type Theme = {
   bgDeep: string;
   textHero: string;
   textHeroMuted: string;
+  background: string;
+  foreground: string;
+  grayMuted: string;
+  surface: string;
+  surfaceMuted: string;
+  surfaceElevated: string;
+  borderSubtle: string;
+  isLight?: boolean;
 };
 
 export const themes: Theme[] = [
@@ -38,7 +47,14 @@ export const themes: Theme[] = [
     aurora2: "rgba(71, 0, 159, 0.4)",
     bgDeep: "#06040f",
     textHero: "#ffffff",
-    textHeroMuted: "rgba(255, 255, 255, 0.78)",
+    textHeroMuted: "rgba(255, 255, 255, 0.88)",
+    background: "#06040f",
+    foreground: "#f1f5f9",
+    grayMuted: "#94a3b8",
+    surface: "rgba(255, 255, 255, 0.04)",
+    surfaceMuted: "rgba(255, 255, 255, 0.02)",
+    surfaceElevated: "rgba(255, 255, 255, 0.06)",
+    borderSubtle: "rgba(255, 255, 255, 0.08)",
   },
   {
     id: "emeraldLuxury",
@@ -53,7 +69,14 @@ export const themes: Theme[] = [
     aurora2: "rgba(6, 78, 59, 0.5)",
     bgDeep: "#030f0a",
     textHero: "#ffffff",
-    textHeroMuted: "rgba(255, 255, 255, 0.75)",
+    textHeroMuted: "rgba(255, 255, 255, 0.88)",
+    background: "#030f0a",
+    foreground: "#f1f5f9",
+    grayMuted: "#94a3b8",
+    surface: "rgba(255, 255, 255, 0.04)",
+    surfaceMuted: "rgba(255, 255, 255, 0.02)",
+    surfaceElevated: "rgba(255, 255, 255, 0.06)",
+    borderSubtle: "rgba(255, 255, 255, 0.08)",
   },
   {
     id: "cyberBlue",
@@ -68,7 +91,14 @@ export const themes: Theme[] = [
     aurora2: "rgba(30, 27, 75, 0.55)",
     bgDeep: "#030712",
     textHero: "#ffffff",
-    textHeroMuted: "rgba(255, 255, 255, 0.78)",
+    textHeroMuted: "rgba(255, 255, 255, 0.88)",
+    background: "#030712",
+    foreground: "#f1f5f9",
+    grayMuted: "#94a3b8",
+    surface: "rgba(255, 255, 255, 0.04)",
+    surfaceMuted: "rgba(255, 255, 255, 0.02)",
+    surfaceElevated: "rgba(255, 255, 255, 0.06)",
+    borderSubtle: "rgba(255, 255, 255, 0.08)",
   },
   {
     id: "neonViolet",
@@ -83,7 +113,14 @@ export const themes: Theme[] = [
     aurora2: "rgba(76, 29, 149, 0.5)",
     bgDeep: "#08051a",
     textHero: "#ffffff",
-    textHeroMuted: "rgba(255, 255, 255, 0.78)",
+    textHeroMuted: "rgba(255, 255, 255, 0.88)",
+    background: "#08051a",
+    foreground: "#f1f5f9",
+    grayMuted: "#94a3b8",
+    surface: "rgba(255, 255, 255, 0.04)",
+    surfaceMuted: "rgba(255, 255, 255, 0.02)",
+    surfaceElevated: "rgba(255, 255, 255, 0.06)",
+    borderSubtle: "rgba(255, 255, 255, 0.08)",
   },
   {
     id: "goldenPrestige",
@@ -98,7 +135,14 @@ export const themes: Theme[] = [
     aurora2: "rgba(69, 26, 3, 0.55)",
     bgDeep: "#0c0804",
     textHero: "#ffffff",
-    textHeroMuted: "rgba(255, 255, 255, 0.78)",
+    textHeroMuted: "rgba(255, 255, 255, 0.88)",
+    background: "#0c0804",
+    foreground: "#f1f5f9",
+    grayMuted: "#94a3b8",
+    surface: "rgba(255, 255, 255, 0.04)",
+    surfaceMuted: "rgba(255, 255, 255, 0.02)",
+    surfaceElevated: "rgba(255, 255, 255, 0.06)",
+    borderSubtle: "rgba(255, 255, 255, 0.08)",
   },
   {
     id: "midnightSapphire",
@@ -113,7 +157,14 @@ export const themes: Theme[] = [
     aurora2: "rgba(15, 23, 42, 0.6)",
     bgDeep: "#020617",
     textHero: "#ffffff",
-    textHeroMuted: "rgba(255, 255, 255, 0.78)",
+    textHeroMuted: "rgba(255, 255, 255, 0.88)",
+    background: "#020617",
+    foreground: "#f1f5f9",
+    grayMuted: "#94a3b8",
+    surface: "rgba(255, 255, 255, 0.04)",
+    surfaceMuted: "rgba(255, 255, 255, 0.02)",
+    surfaceElevated: "rgba(255, 255, 255, 0.06)",
+    borderSubtle: "rgba(255, 255, 255, 0.08)",
   },
   {
     id: "auroraGreen",
@@ -128,7 +179,14 @@ export const themes: Theme[] = [
     aurora2: "rgba(6, 95, 70, 0.5)",
     bgDeep: "#030f0a",
     textHero: "#ffffff",
-    textHeroMuted: "rgba(255, 255, 255, 0.78)",
+    textHeroMuted: "rgba(255, 255, 255, 0.88)",
+    background: "#030f0a",
+    foreground: "#f1f5f9",
+    grayMuted: "#94a3b8",
+    surface: "rgba(255, 255, 255, 0.04)",
+    surfaceMuted: "rgba(255, 255, 255, 0.02)",
+    surfaceElevated: "rgba(255, 255, 255, 0.06)",
+    borderSubtle: "rgba(255, 255, 255, 0.08)",
   },
   {
     id: "darkPremium",
@@ -143,7 +201,37 @@ export const themes: Theme[] = [
     aurora2: "rgba(15, 23, 42, 0.65)",
     bgDeep: "#030303",
     textHero: "#ffffff",
-    textHeroMuted: "rgba(255, 255, 255, 0.72)",
+    textHeroMuted: "rgba(255, 255, 255, 0.85)",
+    background: "#030303",
+    foreground: "#f1f5f9",
+    grayMuted: "#94a3b8",
+    surface: "rgba(255, 255, 255, 0.04)",
+    surfaceMuted: "rgba(255, 255, 255, 0.02)",
+    surfaceElevated: "rgba(255, 255, 255, 0.06)",
+    borderSubtle: "rgba(255, 255, 255, 0.08)",
+  },
+  {
+    id: "cleanWhite",
+    label: "Clean White",
+    isLight: true,
+    gradientStart: "rgba(255, 255, 255, 1)",
+    gradientMid: "rgba(241, 245, 249, 1)",
+    gradientEnd: "rgba(226, 232, 240, 1)",
+    accent: "#7c3aed",
+    accentDark: "#5b21b6",
+    glow: "rgba(124, 58, 237, 0.2)",
+    aurora1: "rgba(124, 58, 237, 0.12)",
+    aurora2: "rgba(148, 163, 184, 0.2)",
+    bgDeep: "#f8fafc",
+    textHero: "#0f172a",
+    textHeroMuted: "rgba(15, 23, 42, 0.72)",
+    background: "#ffffff",
+    foreground: "#0f172a",
+    grayMuted: "#475569",
+    surface: "rgba(15, 23, 42, 0.04)",
+    surfaceMuted: "rgba(15, 23, 42, 0.02)",
+    surfaceElevated: "rgba(255, 255, 255, 0.95)",
+    borderSubtle: "rgba(15, 23, 42, 0.1)",
   },
 ];
 

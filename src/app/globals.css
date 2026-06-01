@@ -53,7 +53,90 @@ body {
   font-family: var(--font-poppins), system-ui, sans-serif;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  overflow-x: clip;
+}
+
+html.theme-light body {
+  color-scheme: light;
+}
+
+/* Readable hero trust badge */
+.hero-eyebrow {
+  color: #ffffff;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+html.theme-light .hero-eyebrow {
+  color: #0f172a;
+  background: rgba(255, 255, 255, 0.92);
+  border-color: rgba(15, 23, 42, 0.12);
+  text-shadow: none;
+}
+
+/* Transparent header — logo & nav always visible */
+.site-header .nav-link {
+  color: #ffffff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.45);
+}
+
+.site-header .nav-menu-btn {
+  border-color: rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+.site-header .nav-menu-btn span {
+  background: #ffffff;
+}
+
+html.theme-light .site-header .nav-link,
+html:not(.theme-light) .site-main:not(:has(.gradient-hero)) ~ * .site-header .nav-link {
+  color: var(--foreground);
+  text-shadow: none;
+}
+
+html.theme-light .site-header .nav-menu-btn {
+  border-color: var(--border-subtle);
+  background: var(--surface);
+  color: var(--foreground);
+}
+
+html.theme-light .site-header .nav-menu-btn span {
+  background: var(--foreground);
+}
+
+.mobile-nav {
+  background: color-mix(in srgb, var(--bg-deep) 92%, transparent);
+  border-color: var(--border-subtle);
+  backdrop-filter: blur(16px);
+}
+
+.mobile-nav-link {
+  color: var(--foreground);
+}
+
+.site-main {
+  isolation: isolate;
+}
+
+/* GSAP: never leave content fully invisible */
+.gsap-reveal,
+.gsap-stagger-item {
+  will-change: transform, opacity;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gsap-reveal,
+  .gsap-stagger-item {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    filter: none !important;
+  }
 }
 
 /* Hero – luxury radial */
@@ -150,17 +233,6 @@ body {
   }
 }
 
-/* Ensure content stays visible if animations are skipped */
-@media (prefers-reduced-motion: reduce) {
-  .gsap-reveal,
-  .gsap-stagger-item {
-    opacity: 1 !important;
-    visibility: visible !important;
-    transform: none !important;
-    filter: none !important;
-  }
-}
-
 .glow-orb {
   position: absolute;
   border-radius: 50%;
@@ -202,6 +274,24 @@ body {
   margin-right: auto;
   padding-left: clamp(1rem, 4vw, 2rem);
   padding-right: clamp(1rem, 4vw, 2rem);
+  box-sizing: border-box;
+}
+
+img,
+video,
+svg {
+  max-width: 100%;
+  height: auto;
+}
+
+html.theme-light .glass {
+  background: rgba(255, 255, 255, 0.85);
+  border-color: rgba(15, 23, 42, 0.1);
+}
+
+html.theme-light .card-premium {
+  background: var(--surface-elevated);
+  box-shadow: 0 4px 24px -8px rgba(15, 23, 42, 0.12);
 }
 
 /* Aurora animation */

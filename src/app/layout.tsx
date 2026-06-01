@@ -14,6 +14,10 @@ export const metadata: Metadata = {
   description:
     "Tally on your phone. Access business data, track sales, send invoices, view reports, and manage payment reminders — with real-time sync, offline access, and bank-grade security.",
   keywords: ["Tally", "mobile accounting", "GST", "TallyBridge", "offline Tally"],
+  icons: {
+    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
+    apple: [{ url: "/favicon.svg" }],
+  },
   openGraph: {
     title: "Tally On Phone | TallyBridge",
     description: "Your Tally data, anywhere. Sync, bill, and report on the go.",

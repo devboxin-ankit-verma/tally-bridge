@@ -16,7 +16,7 @@ export default function Home() {
   return (
     <>
       <Header />
-      <main className="relative pt-[72px]">
+      <main className="site-main relative w-full max-w-[100vw] overflow-x-clip pt-[72px] sm:pt-[76px]">
         <Hero />
         <TrustBar />
         <HeroShowcase />

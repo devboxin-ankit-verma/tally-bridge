@@ -20,23 +20,22 @@ export default function Hero() {
 
   return (
     <section
-      className="gradient-hero relative min-h-[100svh] overflow-hidden"
+      className="gradient-hero relative min-h-[100svh] overflow-x-clip overflow-y-visible"
       aria-labelledby="hero-heading"
     >
       <div className="glow-orb -left-40 top-0 h-96 w-96 opacity-50" aria-hidden />
       <div className="glow-orb -right-32 bottom-0 h-[28rem] w-[28rem] opacity-35" aria-hidden />
 
-      <Container className="relative grid min-h-[100svh] items-center gap-12 py-24 lg:grid-cols-2 lg:gap-8 lg:py-28">
+      <Container className="relative grid min-h-[100svh] w-full max-w-full items-center gap-10 py-20 sm:gap-12 sm:py-24 lg:grid-cols-2 lg:gap-8 lg:py-28">
         <motion.div
           variants={reducedMotion ? undefined : staggerContainer}
           initial="hidden"
           animate="visible"
-          className="flex flex-col items-center text-center lg:items-start lg:text-left"
+          className="relative z-10 flex flex-col items-center text-center lg:items-start lg:text-left"
         >
           <motion.p
             variants={staggerItem}
-            className="glass eyebrow mb-6 rounded-full px-5 py-2 text-on-gradient"
-            style={{ color: "var(--accent)" }}
+            className="hero-eyebrow eyebrow mb-6 rounded-full px-5 py-2.5 font-semibold"
           >
             Trusted by 5,000+ businesses across India
           </motion.p>
@@ -106,7 +105,7 @@ export default function Hero() {
           initial={reducedMotion ? false : { opacity: 0, scale: 0.92 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-          className="relative w-full"
+          className="relative z-10 w-full min-w-0"
         >
           <HeroVisual />
         </motion.div>

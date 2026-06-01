@@ -1,9 +1,10 @@
 "use client";
 
 import { motion, useMotionValueEvent, useScroll } from "framer-motion";
-import Link from "next/link";
 import { useState } from "react";
+import { useTheme } from "@/context/ThemeContext";
 import ThemeSwitcher from "./ThemeSwitcher";
+import BrandLogo from "./ui/BrandLogo";
 import MagneticCTA from "./ui/MagneticCTA";
 import Container from "./ui/Container";
 
@@ -17,44 +18,39 @@ const navLinks = [
 ];
 
 export default function Header() {
+  const { theme } = useTheme();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { scrollY } = useScroll();
+  const logoVariant = theme.isLight ? "dark" : "light";
 
-  useMotionValueEvent(scrollY, "change", (y) => setScrolled(y > 20));
+  useMotionValueEvent(scrollY, "change", (y) => setScrolled(y > 16));
 
   return (
     <motion.header
       initial={{ y: -12, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-      className={`fixed top-0 z-50 w-full transition-all duration-500 ${
+      className={`site-header fixed top-0 z-50 w-full border-b transition-all duration-300 ${
         scrolled
-          ? "border-b border-white/10 bg-[var(--bg-deep)]/80 shadow-[0_8px_40px_-12px_rgba(0,0,0,0.6)] backdrop-blur-2xl"
-          : "border-b border-transparent bg-transparent"
+          ? "border-[var(--border-subtle)] bg-transparent shadow-none"
+          : "border-transparent bg-transparent"
       }`}
     >
-      <Container className="flex items-center justify-between gap-3 py-3.5 sm:py-4">
-        <Link href="#" className="flex shrink-0 items-center gap-2.5">
-          <span
-            className="flex h-9 w-9 items-center justify-center rounded-xl text-sm font-bold text-white shadow-[0_0_24px_var(--glow)]"
-            style={{
-              background: `linear-gradient(145deg, var(--accent), var(--accent-dark))`,
-            }}
-          >
-            TB
-          </span>
-          <span className="text-lg font-bold tracking-tight text-foreground">
-            TallyBridge
-          </span>
-        </Link>
+      <Container className="flex items-center justify-between gap-2 py-3 sm:gap-3 sm:py-3.5">
+        <BrandLogo
+          showTagline
+          size="sm"
+          variant={logoVariant}
+          className="max-w-[min(100%,220px)] sm:max-w-none"
+        />
 
         <nav className="hidden items-center gap-0.5 xl:flex" aria-label="Main">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="group relative rounded-lg px-3 py-2 text-sm font-medium text-gray-muted transition hover:text-foreground"
+              className="nav-link group relative rounded-lg px-3 py-2 text-sm font-medium transition"
             >
               {link.label}
               <span
@@ -65,32 +61,30 @@ export default function Header() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-2">
+        <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
           <ThemeSwitcher />
           <div className="hidden md:block">
             <MagneticCTA
               href="#cta-final"
               variant="secondary"
-              className="!min-h-[42px] !min-w-0 !px-5 !py-2.5 !text-sm"
+              className="!min-h-[40px] !min-w-0 !px-4 !py-2 !text-sm"
             >
               Get Started
             </MagneticCTA>
           </div>
           <button
             type="button"
-            className="flex h-10 w-10 flex-col items-center justify-center gap-1.5 rounded-lg border border-white/10 bg-white/5 xl:hidden"
+            className="nav-menu-btn flex h-10 w-10 flex-col items-center justify-center gap-1.5 rounded-lg border xl:hidden"
             aria-label="Toggle menu"
             aria-expanded={open}
             onClick={() => setOpen(!open)}
           >
             <span
-              className={`block h-0.5 w-5 bg-foreground transition ${open ? "translate-y-2 rotate-45" : ""}`}
+              className={`block h-0.5 w-5 transition ${open ? "translate-y-2 rotate-45" : ""}`}
             />
+            <span className={`block h-0.5 w-5 transition ${open ? "opacity-0" : ""}`} />
             <span
-              className={`block h-0.5 w-5 bg-foreground transition ${open ? "opacity-0" : ""}`}
-            />
-            <span
-              className={`block h-0.5 w-5 bg-foreground transition ${open ? "-translate-y-2 -rotate-45" : ""}`}
+              className={`block h-0.5 w-5 transition ${open ? "-translate-y-2 -rotate-45" : ""}`}
             />
           </button>
         </div>
@@ -98,14 +92,14 @@ export default function Header() {
 
       {open && (
         <nav
-          className="border-t border-white/10 bg-[var(--bg-deep)]/95 px-4 py-4 backdrop-blur-2xl xl:hidden"
+          className="mobile-nav border-t px-4 py-4 xl:hidden"
           aria-label="Mobile"
         >
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="block rounded-lg px-2 py-3 text-sm font-medium text-gray-muted hover:bg-white/5 hover:text-foreground"
+              className="mobile-nav-link block rounded-lg px-2 py-3 text-sm font-medium"
               onClick={() => setOpen(false)}
             >
               {link.label}

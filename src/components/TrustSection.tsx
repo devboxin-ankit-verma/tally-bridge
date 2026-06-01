@@ -27,7 +27,7 @@ export default function TrustSection() {
       aria-label="Trust and credibility"
     >
       <Container>
-        <p className="gsap-reveal eyebrow text-center text-gray-muted">
+        <p className="gsap-reveal eyebrow text-center text-[var(--gray-muted)]">
           Trusted by growing businesses
         </p>
 
@@ -58,7 +58,7 @@ export default function TrustSection() {
           {clientLogos.map((name) => (
             <span
               key={name}
-              className="gsap-stagger-item text-sm font-semibold tracking-tight text-foreground/35 sm:text-base"
+              className="gsap-stagger-item text-sm font-semibold tracking-tight text-[var(--gray-muted)] sm:text-base"
             >
               {name}
             </span>
